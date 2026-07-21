@@ -1,0 +1,15 @@
+info:
+  name: Delete User
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: http://localhost:8080/users/bea97af3-18d9-4125-b38a-c853986a53a9
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
