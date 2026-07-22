@@ -2,12 +2,15 @@ package com.thiago.ecommerce.service;
 
 import com.thiago.ecommerce.controller.dto.CreateOrderDto;
 import com.thiago.ecommerce.controller.dto.OrderItemDto;
+import com.thiago.ecommerce.controller.dto.OrderSummaryDto;
 import com.thiago.ecommerce.entity.*;
 import com.thiago.ecommerce.exception.CreateOrderException;
 import com.thiago.ecommerce.repository.OrderItemRepository;
 import com.thiago.ecommerce.repository.OrderRepository;
 import com.thiago.ecommerce.repository.ProductRepository;
 import com.thiago.ecommerce.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -94,4 +97,14 @@ public class OrderService {
                 .orElse(BigDecimal.ZERO);
     }
 
+    public Page<OrderSummaryDto> findAll(Integer page, Integer pageSize) {
+        return orderRepository.findAll(PageRequest.of(page, pageSize))
+                .map(entity -> {
+                    return new OrderSummaryDto(
+                            entity.getOrderId(),
+                            entity.getDate(),
+                            entity.getUser().getUserId(),
+                            entity.getTotal());
+                });
+    }
 }
