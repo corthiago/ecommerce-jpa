@@ -1,0 +1,31 @@
+info:
+  name: Create Order
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:8080/orders
+  body:
+    type: json
+    data: |-
+      {
+        "userId": "d8855670-9f67-432d-9d9c-c1ceb987f1e9",
+        "items": [
+          {
+            "quantity": 1,
+            "productId": 1
+          },
+          {
+            "quantity": 2,
+            "productId": 1
+          }
+        ] 
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
