@@ -1,5 +1,5 @@
 info:
-  name: Get Order By Id
+  name: Get Order Details
   type: http
   seq: 6
 
