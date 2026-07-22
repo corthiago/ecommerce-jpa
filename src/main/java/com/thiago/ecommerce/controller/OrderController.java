@@ -1,9 +1,6 @@
 package com.thiago.ecommerce.controller;
 
-import com.thiago.ecommerce.controller.dto.ApiResponse;
-import com.thiago.ecommerce.controller.dto.CreateOrderDto;
-import com.thiago.ecommerce.controller.dto.OrderSummaryDto;
-import com.thiago.ecommerce.controller.dto.PaginationResponseDto;
+import com.thiago.ecommerce.controller.dto.*;
 import com.thiago.ecommerce.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +39,16 @@ public class OrderController {
                                 ordersResponse.getSize(),
                                 ordersResponse.getTotalElements(),
                                 ordersResponse.getTotalPages())));
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponseDto> findById(@PathVariable(value = "orderId") Long orderId){
+
+        var order = orderService.findById(orderId);
+
+        return order.isPresent() ?
+                ResponseEntity.ok(OrderResponseDto.fromEntity(order.get())) :
+                ResponseEntity.notFound().build();
+
     }
 }

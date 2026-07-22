@@ -13,12 +13,16 @@ http:
         "userId": "d8855670-9f67-432d-9d9c-c1ceb987f1e9",
         "items": [
           {
-            "quantity": 1,
+            "quantity": 3,
             "productId": 1
           },
           {
             "quantity": 1,
             "productId": 2
+          },
+          {
+            "quantity": 2,
+            "productId": 3
           }
         ] 
       }
